@@ -76,15 +76,16 @@
             padding: 2rem;
         }
         
-        /* 2カラムレイアウト */
-        .main-layout {
+        /* グリッドレイアウト */
+        .input-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         @media (max-width: 768px) {
-            .main-layout {
+            .input-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -367,153 +368,156 @@
 
     <!-- メインコンテンツ -->
     <main class="container">
-        <div class="main-layout">
-            <!-- 左カラム：入力フォーム -->
-            <div class="card">
-                <div class="card-header">
-                    入力情報
-                </div>
-                <div class="card-body">
-                    <form id="copyForm">
-                        <!-- 商品情報 -->
-                        <div style="margin-bottom: 2rem;">
-                            <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">📦 商品情報</h3>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    商品名 <span class="required">*</span>
-                                </label>
-                                <input type="text" class="form-input" id="productName" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    商品の特徴・強み・USP <span class="required">*</span>
-                                </label>
-                                <textarea class="form-textarea large" id="productFeatures" required 
-                                          placeholder="商品の独自性、競合優位性、機能、効果など"></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- ターゲット情報 -->
-                        <div style="margin-bottom: 2rem;">
-                            <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">👥 ターゲット情報</h3>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    ペルソナ・インサイト <span class="required">*</span>
-                                </label>
-                                <textarea class="form-textarea large" id="targetInsight" required 
-                                          placeholder="ターゲットの属性、悩み（ペイン）、欲求（ゲイン）、障壁など"></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- 訴求情報 -->
-                        <div style="margin-bottom: 2rem;">
-                            <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">💡 訴求情報</h3>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    メイン訴求軸・訴求内容 <span class="required">*</span>
-                                </label>
-                                <textarea class="form-textarea" id="mainAppeal" required 
-                                          placeholder="最も伝えたい価値・メッセージ"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    サブ訴求軸・訴求内容 <span class="optional">(任意)</span>
-                                </label>
-                                <textarea class="form-textarea" id="subAppeal" 
-                                          placeholder="補助的な価値・メッセージ"></textarea>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    コンセプト <span class="optional">(任意)</span>
-                                </label>
-                                <input type="text" class="form-input" id="concept" 
-                                       placeholder="全体を貫くコミュニケーションコンセプト">
-                            </div>
-                        </div>
-                        
-                        <!-- アウトプット設定 -->
-                        <div style="margin-bottom: 2rem;">
-                            <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">⚙️ アウトプット設定</h3>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    コピータイプ <span class="required">*</span>
-                                </label>
-                                <select class="form-select" id="copyType" required>
-                                    <option value="キャッチコピー">キャッチコピー（15-30文字）</option>
-                                    <option value="リードコピー">リードコピー（50-100文字）</option>
-                                    <option value="ボディコピー">ボディコピー（100-200文字）</option>
-                                    <option value="CTA">CTAボタン（5-15文字）</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    トーン <span class="required">*</span>
-                                </label>
-                                <select class="form-select" id="tone" required>
-                                    <option value="親しみやすい">親しみやすい</option>
-                                    <option value="プロフェッショナル">プロフェッショナル</option>
-                                    <option value="感情的">感情的</option>
-                                    <option value="論理的">論理的</option>
-                                    <option value="挑発的">挑発的</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">
-                                    要望 <span class="optional">(任意)</span>
-                                </label>
-                                <textarea class="form-textarea" id="requirements" 
-                                          placeholder="含めたいキーワード、避けたい表現など"></textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- 生成ボタン -->
-                        <div class="generate-section">
-                            <button type="submit" class="btn btn-primary btn-block">
-                                コピーを生成
-                            </button>
-                        </div>
-                    </form>
-                </div>
+        <!-- 入力フォーム -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+                入力情報
             </div>
-            
-            <!-- 右カラム：結果表示 -->
-            <div>
-                <!-- ローディング -->
-                <div class="loading" id="loading">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="spinner"></div>
-                            <p>コピーを生成中...</p>
+            <div class="card-body">
+                <form id="copyForm">
+                    <div class="input-grid">
+                        <!-- 左カラム -->
+                        <div>
+                            <!-- 商品情報 -->
+                            <div style="margin-bottom: 2rem;">
+                                <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">📦 商品情報</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        商品名 <span class="required">*</span>
+                                    </label>
+                                    <input type="text" class="form-input" id="productName" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        商品の特徴・強み・USP <span class="required">*</span>
+                                    </label>
+                                    <textarea class="form-textarea large" id="productFeatures" required 
+                                              placeholder="商品の独自性、競合優位性、機能、効果など"></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- 訴求情報 -->
+                            <div>
+                                <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">💡 訴求情報</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        メイン訴求軸・訴求内容 <span class="required">*</span>
+                                    </label>
+                                    <textarea class="form-textarea" id="mainAppeal" required 
+                                              placeholder="最も伝えたい価値・メッセージ"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        サブ訴求軸・訴求内容 <span class="optional">(任意)</span>
+                                    </label>
+                                    <textarea class="form-textarea" id="subAppeal" 
+                                              placeholder="補助的な価値・メッセージ"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        コンセプト <span class="optional">(任意)</span>
+                                    </label>
+                                    <input type="text" class="form-input" id="concept" 
+                                           placeholder="全体を貫くコミュニケーションコンセプト">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 右カラム -->
+                        <div>
+                            <!-- ターゲット情報 -->
+                            <div style="margin-bottom: 2rem;">
+                                <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">👥 ターゲット情報</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        ペルソナ・インサイト <span class="required">*</span>
+                                    </label>
+                                    <textarea class="form-textarea large" id="targetInsight" required 
+                                              placeholder="ターゲットの属性、悩み（ペイン）、欲求（ゲイン）、障壁など" style="min-height: 160px;"></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- アウトプット設定 -->
+                            <div>
+                                <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 1rem;">⚙️ アウトプット設定</h3>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        コピータイプ <span class="required">*</span>
+                                    </label>
+                                    <select class="form-select" id="copyType" required>
+                                        <option value="キャッチコピー">キャッチコピー（15-30文字）</option>
+                                        <option value="リードコピー">リードコピー（50-100文字）</option>
+                                        <option value="ボディコピー">ボディコピー（100-200文字）</option>
+                                        <option value="CTA">CTAボタン（5-15文字）</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        トーン <span class="required">*</span>
+                                    </label>
+                                    <select class="form-select" id="tone" required>
+                                        <option value="親しみやすい">親しみやすい</option>
+                                        <option value="プロフェッショナル">プロフェッショナル</option>
+                                        <option value="感情的">感情的</option>
+                                        <option value="論理的">論理的</option>
+                                        <option value="挑発的">挑発的</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="form-label">
+                                        要望 <span class="optional">(任意)</span>
+                                    </label>
+                                    <textarea class="form-textarea" id="requirements" 
+                                              placeholder="含めたいキーワード、避けたい表現など"></textarea>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- 生成ボタン -->
+                    <div style="text-align: center; padding: 1.5rem 0;">
+                        <button type="submit" class="btn btn-primary" style="min-width: 200px; display: inline-flex; align-items: center; justify-content: center;">
+                            コピーを生成
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- ローディング -->
+        <div class="loading" id="loading">
+            <div class="card">
+                <div class="card-body">
+                    <div class="spinner"></div>
+                    <p>コピーを生成中...</p>
                 </div>
-                
-                <!-- 結果表示 -->
-                <div class="results-section" id="resultsSection">
-                    <div class="card">
-                        <div class="card-header">
-                            生成結果
-                        </div>
-                        <div class="card-body">
-                            <div id="resultsContainer">
-                                <!-- 結果がここに表示される -->
-                            </div>
-                            
-                            <div style="margin-top: 1rem;">
-                                <button class="btn btn-secondary btn-block" onclick="regenerate()">
-                                    再生成
-                                </button>
-                            </div>
-                        </div>
+            </div>
+        </div>
+        
+        <!-- 結果表示 -->
+        <div class="results-section" id="resultsSection">
+            <div class="card">
+                <div class="card-header">
+                    生成結果
+                </div>
+                <div class="card-body">
+                    <div id="resultsContainer">
+                        <!-- 結果がここに表示される -->
+                    </div>
+                    
+                    <div style="margin-top: 1rem; text-align: center;">
+                        <button class="btn btn-secondary" onclick="regenerate()" style="min-width: 150px;">
+                            再生成
+                        </button>
                     </div>
                 </div>
             </div>
@@ -619,13 +623,13 @@ ${formData.requirements ? `要望: ${formData.requirements}` : ''}
 2. ターゲットのインサイトに深く刺さる表現を使う
 3. 指定されたトーンを反映する
 4. 5つのバリエーションを作成し、それぞれ異なるアプローチを取る
-5. 文字の位置ずれが起きないよう、改行は使わない
+5. 改行や余計な空白を含めない
 
-【出力形式】JSON
+【出力形式】JSON（必ず以下の形式を守る）
 {
   "copies": [
     {
-      "copy": "生成されたコピー",
+      "copy": "生成されたコピー（余計な空白なし）",
       "approach": "アプローチの説明",
       "charCount": 文字数
     }
@@ -681,7 +685,7 @@ ${formData.requirements ? `要望: ${formData.requirements}` : ''}
                             <span class="variation-number">${index + 1}</span>
                             <span class="char-count">${item.charCount}文字</span>
                         </div>
-                        <button class="copy-btn" onclick="copyToClipboard('${item.copy.replace(/'/g, "\\'")}')">
+                        <button class="copy-btn" onclick="copyToClipboard(\`${item.copy.replace(/`/g, '\\`').replace(/\\/g, '\\\\')}\`)">>
                             コピー
                         </button>
                     </div>
